@@ -2519,4 +2519,12 @@
   'Fill_all_required_fields_of_shipping_address' => 'Fill all required fields of shipping address',
   'customer_settings' => 'Customer settings',
   'customer_wallet_settings' => 'Customer wallet settings',
+  'phonepe' => 'Phonepe',
+  'phonepe_merchant_key' => 'PhonePe merchant key',
+  'phonepe_merchant_mid' => 'PhonePe merchant mid',
+  'phonepe_merchant_api_url' => 'PhonePe merchant api url',
+  'phonepe_merchant_status_api_url' => 'PhonePe merchant status api url',
+  'phonepe_merchant_id' => 'Phonepe merchant id',
+  'phonepe_merchant_salt_key' => 'Phonepe merchant salt key',
+  'phonepe_merchant_salt_index' => 'Phonepe merchant salt index',
 );

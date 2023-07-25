@@ -370,6 +370,18 @@ class PaymentMethodController extends Controller
                 ]),
                 'updated_at' => now()
             ]);
+        }elseif ($name == 'phonepe') {
+            DB::table('business_settings')->updateOrInsert(['type' => 'phonepe'], [
+                'value' => json_encode([
+                    'status' => $request['status'],
+                    'phonepe_merchant_id' => $request['phonepe_merchant_id'],
+                    'phonepe_merchant_salt_key' => $request['phonepe_merchant_salt_key'],
+                    'phonepe_merchant_salt_index' => $request['phonepe_merchant_salt_index'],
+                    'phonepe_merchant_api_url' => $request['phonepe_merchant_api_url'],
+                    'phonepe_merchant_status_api_url' => $request['phonepe_merchant_status_api_url'],
+                ]),
+                'updated_at' => now()
+            ]);
         }
         Toastr::success(translate('successfully_updated'));
         return back();

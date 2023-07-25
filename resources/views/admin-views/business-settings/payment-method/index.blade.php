@@ -232,7 +232,73 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div>  
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                    @php($config=\App\CPU\Helpers::get_business_settings('phonepe'))
+                        <form
+                            action="{{env('APP_MODE')!='demo'?route('admin.business-settings.payment-method.update',['phonepe']):'javascript:'}}"
+                            method="post">
+                        @csrf
+                        @if(isset($config))
+                                <div class="d-flex flex-wrap gap-2 justify-content-between mb-3">
+                                    <h5 class="text-uppercase">{{\App\CPU\translate('phonepe')}}</h5>
+
+                                    <label class="switcher show-status-text">
+                                        <input class="switcher_input" type="checkbox"
+                                               name="status" value="1" {{$config['status']==1?'checked':''}}>
+                                        <span class="switcher_control"></span>
+                                    </label>
+                                </div>
+
+                                <center class="mb-3">
+                                    <img height="60" src="{{asset('/public/assets/back-end/img/phonepe.svg')}}" alt="">
+                                </center>
+
+                                <div class="form-group">
+                                    <label class="d-flex title-color">{{\App\CPU\translate('phonepe_merchant_id')}}</label>
+                                    <input type="text" class="form-control" name="phonepe_merchant_id"
+                                           value="{{env('APP_MODE')!='demo'?$config['phonepe_merchant_id']:''}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="d-flex title-color">{{\App\CPU\translate('phonepe_merchant_salt_key')}}</label>
+                                    <input type="text" class="form-control" name="phonepe_merchant_salt_key"
+                                           value="{{env('APP_MODE')!='demo'?$config['phonepe_merchant_salt_key']:''}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="d-flex title-color">{{\App\CPU\translate('phonepe_merchant_salt_index')}}</label>
+                                    <input type="text" class="form-control" name="phonepe_merchant_salt_index"
+                                           value="{{env('APP_MODE')!='demo'?$config['phonepe_merchant_salt_index']:''}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="d-flex title-color">{{\App\CPU\translate('phonepe_merchant_api_url')}}</label>
+                                    <input type="text" class="form-control" name="phonepe_merchant_api_url"
+                                           value="{{env('APP_MODE')!='demo'?$config['phonepe_merchant_api_url']:''}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="d-flex title-color">{{\App\CPU\translate('phonepe_merchant_status_api_url')}}</label>
+                                    <input type="text" class="form-control" name="phonepe_merchant_status_api_url"
+                                           value="{{env('APP_MODE')!='demo'?$config['phonepe_merchant_status_api_url']:''}}">
+                                </div>
+                          
+                                <div class="mt-3 d-flex flex-wrap justify-content-end gap-10">
+                                    <button type="{{env('APP_MODE')!='demo'?'submit':'button'}}"
+                                            onclick="{{env('APP_MODE')!='demo'?'':'call_demo()'}}"
+                                            class="btn btn--primary px-4 text-uppercase">{{\App\CPU\translate('save')}}</button>
+                                    @else
+                                        <button type="submit"
+                                                class="btn btn--primary px-4 text-uppercase">{{\App\CPU\translate('configure')}}</button>
+                                    @endif
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>  
         </div>
     </div>
 @endsection

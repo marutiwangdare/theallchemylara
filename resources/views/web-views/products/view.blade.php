@@ -188,7 +188,7 @@
                                                     
                                                 </div>
                                             @endif
-                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked>
                                             
                                         </li>
                                     </div>

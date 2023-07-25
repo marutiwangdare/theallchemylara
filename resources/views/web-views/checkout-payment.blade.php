@@ -35,8 +35,8 @@
                 <!-- Payment methods accordion-->
                     <h2 class="h6 pb-3 mb-2 mt-5">{{\App\CPU\translate('choose_payment')}}</h2>
 
-                    <div class="row g-3">
-                        @php($config=\App\CPU\Helpers::get_business_settings('cash_on_delivery'))
+                    <div class="row g-3"> 
+                        @php($config=\App\CPU\Helpers::get_business_settings('cash_on_delivery')) 
                         @if(!$cod_not_show && $config['status'])
                             <div class="col-sm-6" id="cod-for-cart">
                                 <div class="card cursor-pointer">
@@ -50,12 +50,11 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endif 
 
                         @php($coupon_discount = session()->has('coupon_discount') ? session('coupon_discount') : 0)
                         @php($amount = \App\CPU\CartManager::cart_grand_total() - $coupon_discount)
                         @php($digital_payment=\App\CPU\Helpers::get_business_settings('digital_payment'))
-
                         @if ($digital_payment['status']==1)
                             @php($config=\App\CPU\Helpers::get_business_settings('wallet_status'))
                             @if($config==1)
@@ -147,10 +146,10 @@
                                     </div>
                                 </div>
                             @endif
-
+                           
                             @php($config=\App\CPU\Helpers::get_business_settings('razor_pay'))
                             @php($inr=\App\Model\Currency::where(['symbol'=>'₹'])->first())
-                            @php($usd=\App\Model\Currency::where(['code'=>'INR'])->first())
+                            @php($usd=\App\Model\Currency::where(['code'=>'INR'])->first())  
                             @if(isset($inr) && isset($usd) && $config['status'])
 
                                 <div class="col-sm-6">
@@ -181,7 +180,7 @@
                                     </div>
                                 </div>
                             @endif
-
+                           
                             @php($config=\App\CPU\Helpers::get_business_settings('paystack'))
                             @if($config['status'])
                                 <div class="col-sm-6">
@@ -365,6 +364,19 @@
                                         <div class="card-body __h-100px">
                                             <a class="btn btn-block click-if-alone" href="{{route('paytm-payment')}}">
                                                 <img class="__inline-55" src="{{asset('public/assets/front-end/img/paytm.png')}}"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @php($config=\App\CPU\Helpers::get_business_settings('phonepe'))
+                            @if(isset($config) && $config['status'])
+                                <div class="col-sm-6">
+                                    <div class="card cursor-pointer">
+                                        <div class="card-body __h-100px">
+                                            <a class="btn btn-block click-if-alone" href="{{route('phonepe-payment')}}">
+                                                <img class="__inline-55" src="{{asset('public/assets/front-end/img/phonepe.svg')}}"/>
                                             </a>
                                         </div>
                                     </div>
