@@ -625,7 +625,8 @@ class WebController extends Controller
         $request['sort_by'] == null ? $request['sort_by'] == 'latest' : $request['sort_by'];
 
         $porduct_data = Product::active()->with(['reviews']);
-
+        $query = $porduct_data;
+        
         if ($request['data_from'] == 'category') {
             $products = $porduct_data->get();
             $product_ids = [];
@@ -639,9 +640,12 @@ class WebController extends Controller
             $query = $porduct_data->whereIn('id', $product_ids);
         }
 
-        if ($request['data_from'] == 'brand') {
-            $query = $porduct_data->where('brand_id', $request['id']);
+        if ($request['brand_id'] != '') {
+            $query = $porduct_data->where('brand_id', $request['brand_id']);
         }
+       // if ($request['data_from'] == 'brand') {
+        //    $query = $porduct_data->where('brand_id', $request['id']);
+        //}
 
         if ($request['data_from'] == 'latest') {
             $query = $porduct_data;
@@ -764,8 +768,17 @@ class WebController extends Controller
         if ($request['data_from'] == 'category') {
             $data['brand_name'] = Category::find((int)$request['id'])->name;
         }
-        if ($request['data_from'] == 'brand') {
+        /*if ($request['data_from'] == 'brand') {
             $brand_data = Brand::active()->find((int)$request['id']);
+            if($brand_data) {
+                $data['brand_name'] = $brand_data->name;
+            }else {
+                Toastr::warning(translate('not_found'));
+                return redirect('/');
+            }
+        }*/
+        if ($request['brand_id'] != '') {
+            $brand_data = Brand::active()->find((int)$request['brand_id']);
             if($brand_data) {
                 $data['brand_name'] = $brand_data->name;
             }else {
